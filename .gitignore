@@ -1,9 +1,9 @@
 # Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+backend/logs
+backend/*.log
+backend/npm-debug.log*
+backend/yarn-debug.log*
+backend/yarn-error.log*
 
 # Runtime data
 pids
@@ -33,14 +33,14 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
-jspm_packages/
+backend/node_modules/
+backend/jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
 
 # Optional npm cache directory
-.npm
+backend/.npm
 
 # Optional eslint cache
 .eslintcache
@@ -55,7 +55,7 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+backend/.env
 
 # next.js build output
 .next
