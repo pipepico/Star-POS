@@ -34,6 +34,7 @@ build/Release
 
 # Dependency directories
 backend/node_modules/
+frontend/node_modules/
 backend/jspm_packages/
 
 # TypeScript v1 declaration files
@@ -56,6 +57,15 @@ backend/.npm
 
 # dotenv environment variables file
 backend/.env
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
 
 # next.js build output
 .next
+
+# misc
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
