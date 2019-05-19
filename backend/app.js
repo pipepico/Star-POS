@@ -11,6 +11,7 @@ const path = require('path');
 const session = require('express-session');
 const passport = require('./helpers/passport');
 const cors = require('cors');
+const { isLogged, checkRole } = require('./helpers/middlewares');
 
 mongoose
 	.connect(process.env.DB, { useNewUrlParser: true })
@@ -70,6 +71,9 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Star';
 
 const index = require('./routes/index');
+const articles = require('./routes/POS/articles');
+
+app.use('/POS', isLogged, checkRole('ADMIN'),articles);
 app.use('/', index);
 
 module.exports = app;
