@@ -17,11 +17,11 @@ const articleSchema = new mongoose.Schema(
 			ref: 'Category'
 		},
 		saleUnit: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Units'
 		},
 		purchaseUnit: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Units'
 		},
 		taxes: {
@@ -32,7 +32,11 @@ const articleSchema = new mongoose.Schema(
 			type: Array,
 			required: true
 		},
-		stock: Number
+		stock: Number,
+		active: {
+			type: Boolean,
+			default: true
+		}
 	},
 	{
 		timestamps: true,

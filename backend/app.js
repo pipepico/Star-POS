@@ -73,7 +73,7 @@ app.locals.title = 'Star';
 const index = require('./routes/index');
 const articles = require('./routes/POS/articles');
 
-app.use('/POS', isLogged, checkRole('ADMIN'),articles);
+app.use('/POS', articles);
 app.use('/', index);
 
 module.exports = app;

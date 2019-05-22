@@ -24,8 +24,17 @@ router.post('/login', (req, res, next) => {
 	})(req, res, next);
 });
 
-router.get('/private', isLogged, (req, res, next) =>{
-  res.status(200).json({msg: 'You did it'})
+router.get('/private', isLogged, (req, res, next) => {
+	res.status(200).json({ msg: 'You did it' });
+});
+
+router.get('/logout', (req, res, next) => {
+	req.logOut();
+	req.status(200).json({ msg: 'Logout' });
+});
+
+router.get('/profile', isLogged, (req, res, next) => {
+	req.status(200).json(req.user);
 });
 
 module.exports = router;
