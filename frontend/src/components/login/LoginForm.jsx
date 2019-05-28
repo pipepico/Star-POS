@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Button, Row, Col, Card, Icon, Form } from 'antd';
-import { Mycontext } from '../../context';
+//import { Mycontext } from '../../context';
 
 // const LoginForm = () => (
 // 	<Mycontext.Consumer>

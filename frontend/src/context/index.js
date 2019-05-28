@@ -14,7 +14,7 @@ class MyProvider extends Component {
 			email: '',
 			password: ''
 		},
-		user: JSON.parse(window.localStorage.getItem('logged'))
+		user: JSON.parse(window.localStorage.getItem('loggedUser'))
 	};
 	componentDidMount() {}
 	handleInput = (e) => {

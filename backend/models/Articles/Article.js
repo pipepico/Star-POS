@@ -43,3 +43,5 @@ const articleSchema = new mongoose.Schema(
 		versionKey: false
 	}
 );
+
+module.exports = mongoose.model('Article', articleSchema);

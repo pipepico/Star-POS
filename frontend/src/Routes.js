@@ -6,7 +6,7 @@ import Login from './components/login/Login';
 import NotFound from './components/NotFound';
 import Profile from './components/profile/Profile';
 import Pos from './components/pos/POS';
-
+import Contacts from './components/Contact';
 const Routes = () => (
 	<Switch>
 		<Route exact path={'/'} component={Home} />
@@ -14,6 +14,7 @@ const Routes = () => (
 		<Route exact path={'/login'} component={Login} />
 		<Route exact path={'/profile'} component={Profile} />
 		<Route exact path={'/pos'} component={Pos} />
+		<Route exact path={'/contacts'} component={Contacts} />
 		<Route componet={NotFound} />
 	</Switch>
 );

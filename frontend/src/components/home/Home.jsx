@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import CardComponent from './CardComponent';
 import { Row, Col } from 'antd';
-import Clock from '../../Clock';
 import Toggle from '../../Toggle';
+import LoginControl from '../../LoginControl';
+//import Clock from '../../Clock';
+//import Greeting from '../../Greeting';
+
 const directions = [
 	{
 		title: 'Register to POS',
@@ -30,12 +33,11 @@ export default class Home extends Component {
 	render() {
 		return (
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} type="flex" justify="space-around">
-				{/* <p>{setInterval(this.state.thick, 1000)}</p>
-				<p>{this.state.updateDate(this.state.thick())}</p> */}
-				<Col span={12} offset={8}>
-					<Clock />
+				<Col span={12} offset={6}>
 					<Toggle />
+					<LoginControl />
 				</Col>
+				<Col span={6} />
 				{directions.map((e, i) => (
 					<CardComponent key={i} title={e.title} description={e.description} url={e.url} />
 				))}

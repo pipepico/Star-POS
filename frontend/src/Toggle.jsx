@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Clock from './Clock';
 
 class Toggle extends Component {
 	constructor(props) {
@@ -15,7 +16,12 @@ class Toggle extends Component {
 		}));
 	}
 	render() {
-		return <button onClick={this.handleClick}>{this.state.isToggleOn ? 'ON' : 'OFF'}</button>;
+		return (
+			<div>
+				{this.state.isToggleOn && <Clock />}
+				<button onClick={this.handleClick}>{this.state.isToggleOn ? 'ON' : 'OFF'}</button>
+			</div>
+		);
 	}
 }
 

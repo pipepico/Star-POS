@@ -3,10 +3,13 @@ import SignupForm from './SignupForm';
 
 class Signup extends Component {
 	render() {
+		const user = localStorage.getItem('loggedUser');
+		console.log(user);
+		console.log({ user });
 		return (
-			<React.Fragment style={{ marginTop: '15px' }}>
+			<div style={{ marginTop: '15px' }}>
 				<SignupForm />
-			</React.Fragment>
+			</div>
 		);
 	}
 }

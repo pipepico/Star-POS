@@ -4,17 +4,17 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
 const favicon = require('serve-favicon');
-const hbs = require('hbs');
 const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const session = require('express-session');
 const passport = require('./helpers/passport');
 const cors = require('cors');
-const { isLogged, checkRole } = require('./helpers/middlewares');
+//const { isLogged, checkRole } = require('./helpers/middlewares');
 
 mongoose
-	.connect(process.env.DB, { useNewUrlParser: true })
+	//.connect(process.env.DB, { useNewUrlParser: true })
+	.connect('mongodb://localhost/starposx', { useNewUrlParser: true })
 	.then((x) => {
 		console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
 	})
@@ -72,8 +72,12 @@ app.locals.title = 'Star';
 
 const index = require('./routes/index');
 const articles = require('./routes/POS/articles');
+const article = require('./routes/article');
+const auth = require('./routes/auth');
 
-app.use('/POS', articles);
+app.use('/article/', article);
+app.use('/POS/', articles);
+app.use('/auth/', auth);
 app.use('/', index);
 
 module.exports = app;

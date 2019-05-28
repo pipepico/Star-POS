@@ -4,7 +4,7 @@ import { Row } from 'antd';
 
 class Profile extends Component {
 	render() {
-		const user = localStorage.getItem('logged');
+		const user = localStorage.getItem('loggedUser');
 		if (!user)
 			return (
 				<div>
@@ -13,7 +13,7 @@ class Profile extends Component {
 			);
 		return (
 			<Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} type="flex" justify="space-around">
-				<ProfileForm name="Felipe" />
+				<ProfileForm name={user} />
 			</Row>
 		);
 	}

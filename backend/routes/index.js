@@ -1,40 +1,39 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
-const passport = require('../helpers/passport');
-const { isLogged } = require('../helpers/middlewares');
+const router = require('express').Router();
+const Character = require('../models/Character');
+const arts = require('../models/ArticlesX');
 
-router.get('/', (req, res, next) => res.render('index'));
+router.get('/', (req, res, next) => {
+	res.render('index');
+});
 
-router.post('/signup', (req, res, next) => {
-	const { password } = req.body;
-	User.register(req.body, password)
-		.then((user) => res.status(200).json(user))
+router.get('/characters', (req, res, next) => {
+	Character.find().then((characters) => res.status(200).json(characters)).catch((err) => res.status(500).json(err));
+});
+
+router.get('/characters/:id', (req, res, next) => {
+	Character.findById(req.params.id)
+		.then((character) => res.status(200).json(character))
 		.catch((err) => res.status(500).json(err));
 });
 
-router.post('/login', (req, res, next) => {
-	passport.authenticate('local', (err, user, infoErr) => {
-		if (err) return res.status(500).json({ err, infoErr });
-		if (!user) return res.status(401).json({ msg: "This user doesn't exist" });
-		req.logIn(user, (err) => {
-			if (err) return res.status(500).json(err);
-			res.status(200).json(user);
-		});
-	})(req, res, next);
+router.post('/characters', (req, res, next) => {
+	Character.create({ ...req.body })
+		.then((character) => res.status(200).json(character))
+		.catch((err) => res.status(500).json(err));
 });
 
-router.get('/private', isLogged, (req, res, next) => {
-	res.status(200).json({ msg: 'You did it' });
+router.patch('/characters/:id', (req, res, next) => {
+	Character.findByIdAndUpdate(req.params.id, req.body, { new: true })
+		.then((character) => res.status(200).json(character))
+		.catch((err) => res.status(500).json(err));
 });
 
-router.get('/logout', (req, res, next) => {
-	req.logOut();
-	req.status(200).json({ msg: 'Logout' });
-});
-
-router.get('/profile', isLogged, (req, res, next) => {
-	req.status(200).json(req.user);
+router.delete('/characters/:id', (req, res, next) => {
+	const { password } = req.headers;
+	if (!password) return res.status(401).json({ message: 'Epale putito' });
+	Character.findByIdAndDelete(req.params.id)
+		.then((character) => res.status(200).json(character))
+		.catch((err) => res.status(500).json(err));
 });
 
 module.exports = router;

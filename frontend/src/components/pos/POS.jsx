@@ -5,6 +5,7 @@ class Pos extends Component {
 	render() {
 		return (
 			<React.Fragment>
+				<h1>POS FORM</h1>
 				<POSForm />
 			</React.Fragment>
 		);
