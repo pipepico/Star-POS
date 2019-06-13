@@ -1,13 +1,9 @@
 const router = require('express').Router();
-const Articles = require('../models/ArticlesX');
+const Articles = require('../models/Articles/Article');
 
 // // Read all art
 // router.get('/', (req, res, next) => {
 // 	Articles.find().then((art) => res.status(200).json(art)).catch((err) => res.status(500).json(err));
-// });
-
-// router.get('/:id', (req, res, next) => {
-// 	Articles.findById(req.params.id).then((art) => res.status(200).json(art)).catch((err) => res.status(500).json(err));
 // });
 
 // router.post('/', (req, res, next) => {
@@ -22,6 +18,10 @@ const Articles = require('../models/ArticlesX');
 // 		.then((art) => res.status(200).json(art))
 // 		.catch((err) => res.status(500).json(err));
 // });
+
+router.get('/:id', (req, res, next) => {
+	Articles.findById(req.params.id).then((art) => res.status(200).json(art)).catch((err) => res.status(500).json(err));
+});
 
 router.delete('/:id', (req, res, next) => {
 	const { password } = req.headers;
@@ -42,9 +42,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/name', (req, res, next) => {
-	Articles.findOne({ name: 'cerveza'}, function (err, doc){
-		
-	});
+	Articles.findOne({ name: 'cerveza' }, function(err, doc) {});
 	Articles.findOne({ name: 'cerveza' })
 		.then((article) => {
 			res.status(200).json(article);

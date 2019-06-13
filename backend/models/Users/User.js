@@ -20,8 +20,7 @@ const userSchema = new Schema(
 			enum: [ 'ADMIN', 'SUPERVISOR', 'USER' ]
 		},
 		store: {
-			type: Schema.Types.ObjectId,
-			ref: 'Store'
+			type: String
 		}
 	},
 	{

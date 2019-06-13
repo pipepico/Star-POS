@@ -14,10 +14,23 @@ const storeSchema = new mongoose.Schema(
 			},
 			coordinates: [ Number ]
 		},
-		address: String
+		address: {
+			street: String,
+			district: String,
+			city: String,
+			state: String,
+			cp: String,
+			country: { type: String, default: 'Mexico' }
+		},
+		company: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Company'
+		}
 	},
 	{
 		timestamps: true,
 		versionKey: false
 	}
 );
+
+module.exports = mongoose.model('Store', storeSchema);

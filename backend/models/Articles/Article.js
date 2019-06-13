@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Price = require('../Articles/Price');
 
 const articleSchema = new mongoose.Schema(
 	{
@@ -7,32 +8,42 @@ const articleSchema = new mongoose.Schema(
 			required: true,
 			unique: true
 		},
-		barcode: {
-			type: String,
-			required: true,
-			unique: true
-		},
+		barcode: [
+			{
+				type: String,
+				default: '',
+				unique: true
+			}
+		],
 		category: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Category'
+			type: String
 		},
 		saleUnit: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Units'
+			type: String
 		},
 		purchaseUnit: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Units'
+			type: String
 		},
 		taxes: {
-			type: Array,
-			default: [ { IVA: 0, IEPS: 0 } ]
+			IVA: {
+				type: Number,
+				default: 0
+			},
+			IEPS: {
+				type: Number,
+				default: 0
+			}
 		},
-		price: {
-			type: Array,
-			required: true
+		price: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Price'
+			}
+		],
+		stock: {
+			type: Number,
+			default: 0
 		},
-		stock: Number,
 		active: {
 			type: Boolean,
 			default: true

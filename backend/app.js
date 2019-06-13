@@ -12,15 +12,7 @@ const passport = require('./helpers/passport');
 const cors = require('cors');
 //const { isLogged, checkRole } = require('./helpers/middlewares');
 
-mongoose
-	//.connect(process.env.DB, { useNewUrlParser: true })
-	.connect('mongodb://localhost/starposx', { useNewUrlParser: true })
-	.then((x) => {
-		console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`);
-	})
-	.catch((err) => {
-		console.error('Error connecting to mongo', err);
-	});
+require('./db');
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -71,13 +63,16 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.locals.title = 'Star';
 
 const index = require('./routes/index');
-const articles = require('./routes/POS/articles');
-const article = require('./routes/article');
 const auth = require('./routes/auth');
 
-app.use('/article/', article);
-app.use('/POS/', articles);
 app.use('/auth/', auth);
+app.use('/a/auth', require('./routes/ADMIN/auth'));
+app.use('/POS/article', require('./routes/POS/articles'));
+app.use('/articles/categories', require('./routes/Articles/categories'));
+app.use('/articles/tax', require('./routes/Articles/taxes'));
+app.use('/articles/unit', require('./routes/Articles/unit'));
+app.use('/c', require('./routes/ADMIN/company'));
+app.use('/s', require('./routes/ADMIN/store'));
 app.use('/', index);
 
 module.exports = app;

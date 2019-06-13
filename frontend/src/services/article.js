@@ -20,3 +20,5 @@ class ArticleService {
 		});
 	};
 }
+
+export default ArticleService;
