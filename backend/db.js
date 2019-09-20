@@ -1,10 +1,8 @@
 require('dotenv').config();
-
 const mongoose = require('mongoose');
 
 mongoose
-	//.connect(process.env.DB, { useNewUrlParser: true })
-	.connect('mongodb://localhost/starposx', {
+	.connect(process.env.DB, {
 		useCreateIndex: true,
 		useNewUrlParser: true,
 		useFindAndModify: false
