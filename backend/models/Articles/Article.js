@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const Price = require('../Articles/Price');
+const { model, Schema } = require('mongoose');
 
-const articleSchema = new mongoose.Schema(
+const articleSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -18,11 +17,15 @@ const articleSchema = new mongoose.Schema(
 		category: {
 			type: String
 		},
-		saleUnit: {
-			type: String
-		},
-		purchaseUnit: {
-			type: String
+		unit: {
+			sale: {
+				name: String,
+				quantity: Number
+			},
+			purchase: {
+				name: String,
+				quantity: Number
+			}
 		},
 		taxes: {
 			IVA: {
@@ -55,4 +58,4 @@ const articleSchema = new mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model('Article', articleSchema);
+module.exports = model('Article', articleSchema);

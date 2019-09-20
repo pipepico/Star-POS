@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const { model, Schema } = require('mongoose');
 
-const companySchema = mongoose.Schema(
+const companySchema = new Schema(
 	{
 		name: {
 			company: {
@@ -19,7 +19,17 @@ const companySchema = mongoose.Schema(
 			required: true,
 			unique: true
 		},
-		coordinates: [ Number ],
+		location: {
+			type: {
+				type: String,
+				enum: [ 'Point' ]
+				// required: true
+			},
+			coordinates: {
+				type: [ Number ]
+				// required: true
+			}
+		},
 		address: {
 			street: String,
 			district: String,
@@ -39,4 +49,4 @@ const companySchema = mongoose.Schema(
 	}
 );
 
-module.exports = mongoose.model('Company', companySchema);
+module.exports = model('Company', companySchema);

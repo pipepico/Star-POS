@@ -1,14 +1,23 @@
-const mongoose = require('mongoose');
+const { model, Schema } = require('mongoose');
 
-const taxSchema = new mongoose.Schema(
+const taxSchema = new Schema(
 	{
-		name: String,
-		value: Number
+		name: {
+			type: String,
+			min: 3,
+			max: 30,
+			required: true,
+			unique: true
+		},
+		value: {
+			type: Number,
+			required: true,
+			default: 0
+		}
 	},
 	{
-		timestamps: true,
-		versionKey: false
+		timestamps: true
 	}
 );
 
-module.exports = mongoose.model('Taxes', taxSchema);
+module.exports = model('Taxes', taxSchema);

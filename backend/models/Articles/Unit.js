@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const { model, Schema } = require('mongoose');
 
-const unitSchema = new mongoose.Schema(
+const unitSchema = new Schema(
 	{
 		name: {
 			type: String,
@@ -8,14 +8,18 @@ const unitSchema = new mongoose.Schema(
 		},
 		shortName: {
 			type: String,
+			min: 3,
+			max: 6,
 			unique: true
 		},
-		quantity: Number
+		quantity: {
+			type: Number,
+			required: true
+		}
 	},
 	{
-		timestamps: true,
-		versionKey: false
+		timestamps: true
 	}
 );
 
-module.exports = mongoose.model('Units', unitSchema);
+module.exports = model('Units', unitSchema);

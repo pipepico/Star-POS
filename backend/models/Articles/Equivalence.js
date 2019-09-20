@@ -1,10 +1,20 @@
-const mongoose = require('mongoose');
+const { model, Schema } = require('mongoose');
 
-const equivalenceSchema = Schema({
+const equivalenceSchema = new Schema({
 	article: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Article'
+		ref: 'Article',
+		required: true
+	},
+	barcode: {
+		type: String,
+		required: true,
+		unique: true
+	},
+	equivalence: {
+		type: Number,
+		default: 1
 	}
 });
 
-module.exports = mongoose.model('Equivalence', equivalenceSchema);
+module.exports = model('Equivalence', equivalenceSchema);
